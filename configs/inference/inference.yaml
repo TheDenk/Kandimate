@@ -1,0 +1,40 @@
+
+
+kandinsky_decoder: "../models/kandinsky-2-2-decoder"
+kandinsky_prior: "../models/kandinsky-2-2-prior"
+motion_module: "../models/motion-modules/checkpoint-5000.ckpt"
+
+img_h: 768
+img_w: 768
+video_length: 16
+
+num_inference_steps: 25
+guidance_scale: 7.0
+random_seeds: [17, 42]
+
+prompts:
+  - "pretty anime girl looking at the camera, cinematic, 4k, 8k"
+  - "pretty girl looking at the camera, cinematic, 4k, 8k"
+
+n_prompts:
+  - "low quality, bad quality"
+  - "low quality, bad quality"
+
+
+
+
+
+unet_additional_kwargs:
+  use_motion_module: true
+  motion_module_resolutions:
+  - 1
+  - 2
+  - 4
+  - 8
+  motion_module_mid_block: false
+  motion_module_decoder_only: false
+  motion_module_kwargs:
+    num_layers: 2
+    num_attention_heads: 8
+    temporal_position_encoding: true
+    temporal_position_encoding_max_len: 24

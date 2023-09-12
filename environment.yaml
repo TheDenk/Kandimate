@@ -1,0 +1,20 @@
+name: kandimate
+channels:
+  - pytorch
+  - nvidia
+dependencies:
+  - python=3.10
+  - pytorch=2.0.1
+  - torchvision=0.15.2
+  - pip
+  - pip:
+    - diffusers==0.20.2
+    - transformers==4.32.1
+    - decord==0.6.0
+    - imageio[ffmpeg]
+    - gdown
+    - einops
+    - omegaconf
+    - safetensors
+    - gradio
+    - wandb
