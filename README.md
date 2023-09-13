@@ -4,7 +4,7 @@
 
 Approach based on [AnimateDiff](https://github.com/guoyww/AnimateDiff) with [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2) models and interpolation [FILM](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0) models.
 
-Examples:  
+Some Examples (More examples see below):  
 
 <table width="800" class="center">
     <tr>
