@@ -1,6 +1,6 @@
 # Kandimate
 
-This repository allows you generate short gifs with temporal extension for Kandinskiy-2-2 models.
+#### Kandinskiy-2-2 with temporal blocks for short gifs generation.
 
 Approach based on [AnimateDiff](https://github.com/guoyww/AnimateDiff) with [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2) models and interpolation [FILM](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0) models.
 
