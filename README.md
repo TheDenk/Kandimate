@@ -8,10 +8,10 @@ Examples:
 
 <table width="800" class="center">
     <tr>
-    <td><img src="docs/gifs/examples/real_girl/181945330600420966.gif" loop=3></td>
-    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif" loop=3></td>
-    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif" loop=infinite></td>
-    <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif" loop=infinite></td>
+    <td><img src="docs/gifs/examples/real_girl/181945330600420966.gif"></td>
+    <td><img src="docs/gifs/examples/train/7994468529718717002.gif"></td>
+    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
+    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
     </tr>
 </table>  
 

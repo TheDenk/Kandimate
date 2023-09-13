@@ -10,13 +10,15 @@ video_length: 16
 
 num_inference_steps: 25
 guidance_scale: 5
-random_seeds: [8311767559332823379]
+random_seeds: [8311767559332823379, 181945330600420966, 7994468529718717002]
 
 prompts:
   - "pretty anime girl looking at the camera, cinematic, 4k, 8k"
   - "pretty girl looking at the camera, extremely high detail, 8k, 4k, cinematic"
+  - "rzd train is going, cinematic, 4k, 8k"
 
 n_prompts:
+  - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
 
