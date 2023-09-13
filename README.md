@@ -119,7 +119,7 @@ To train motion modules
 ```
 torchrun --nnodes=1 --nproc_per_node=1 train.py --config configs/training/training.yaml
 ```
-
+<!--
 ## Gradio Demo
 Gradio demo was created to make Kandimate easier to use. To launch the demo, please run the following commands:
 ```
@@ -128,7 +128,7 @@ python app.py
 ```
 By default, the demo will run at `localhost:7860`.
 Be sure that imageio with backend is installed. (pip install imageio[ffmpeg])
-
+-->
 ## Todo
 - [x] Add train and inference scripts (py and jupyter).
 - [x] Add interpolation inference scripts (py and jupyter).
