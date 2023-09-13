@@ -8,19 +8,17 @@ Examples:
 
 <table width="800" class="center">
     <tr>
-    <td><img src="docs/gifs/examples/anime_girl/752189959033839891.gif"></td>
-    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
-    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
-    <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif"></td>
+    <td><img src="docs/gifs/examples/real_girl/181945330600420966.gif" loop=3></td>
+    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif" loop=3></td>
+    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif" loop=infinite></td>
+    <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif" loop=infinite></td>
     </tr>
 </table>  
 
-
-```
-WARNING! Current model version was trained on 3% data from [WebVid](https://github.com/m-bain/webvid) dataset.  
-So, it maybe difficult to get a good result.
-```
 ## Common Issues
+`WARNING!` Current model version was trained on `3%` data from [WebVid](https://github.com/m-bain/webvid) dataset.  
+So, it maybe difficult to get a good result.
+
 GPU MEM requirements (RTX 3090 or 4090 at least):
 - 512x512 generation ~ 17 GB
 - 768x768 generation ~ 24 GB
@@ -132,6 +130,14 @@ Here several best results.
     <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
     <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
     <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif"></td>
+    </tr>
+</table>  
+<table width="800" class="center">
+    <tr>
+    <td><img src="docs/gifs/examples/real_girl/181945330600420966.gif"></td>
+    <td><img src="docs/gifs/examples/real_girl/1514380906832080732.gif"></td>
+    <td><img src="docs/gifs/examples/real_girl/7055896805879472868.gif"></td>
+    <td><img src="docs/gifs/examples/real_girl/8908903743535013658.gif"></td>
     </tr>
 </table>  
 
