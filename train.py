@@ -85,7 +85,6 @@ def main(
     checkpointing_epochs: int = 5,
     checkpointing_steps: int = -1,
     
-    # guidance_scale = 5.0,
     mixed_precision_training: bool = True,
     enable_xformers_memory_efficient_attention: bool = True,
 

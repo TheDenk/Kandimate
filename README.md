@@ -1,37 +1,32 @@
 # Kandimate
-Short animation with kandinskiy-2-2 model.  
-This repository is an ...
 
-Approach based on [AnimateDiff](https://github.com/guoyww/AnimateDiff) with [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2) models.
-<!-- <table width="1200" class="center">
+This repository allows you generate short gifs with temporal extension for Kandinskiy-2-2 models.
+
+Approach based on [AnimateDiff](https://github.com/guoyww/AnimateDiff) with [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2) models and interpolation [FILM](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0) models.
+
+Examples:  
+
+<table width="800" class="center">
     <tr>
-    <td><img src="__assets__/animations/control/original/dance_original_16_2.gif"></td>
-    <td><img src="__assets__/animations/control/softedge/dance_1girl.gif"></td>
-    <td><img src="__assets__/animations/control/canny/dance_1girl.gif"></td>
-    <td><img src="__assets__/animations/control/canny/dance_medival_portrait.gif"></td>
+    <td><img src="docs/gifs/examples/anime_girl/752189959033839891.gif"></td>
+    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
+    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
+    <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif"></td>
     </tr>
 </table>  
 
-<summary>More controlnet examples</summary>
-<table width="1200" class="center">
-    <tr>
-    <td><img src="__assets__/animations/control/depth/smiling_depth_16_2.gif"></td>
-    <td><img src="__assets__/animations/control/depth/smiling_1girl.gif"></td>
-    <td><img src="__assets__/animations/control/depth/smiling_forbidden_castle.gif"></td>
-    <td><img src="__assets__/animations/control/depth/smiling_halo.gif"></td>
-    <td><img src="__assets__/animations/control/depth/smiling_medival.gif"></td>
-    </tr>
-</table>   -->
 
-## Todo
-- [x] Add train and inference scripts (py and jupyter).
-- [] Add Gradio Demo.
-- [] Add controlnet (?probably). 
-
+```
+WARNING! Current model version was trained on 3% data from [WebVid](https://github.com/m-bain/webvid) dataset.  
+So, it maybe difficult to get a good result.
+```
 ## Common Issues
-GPU MEM REQUIREMENTS (RTX 3090 or 4090 at least):
+GPU MEM requirements (RTX 3090 or 4090 at least):
 - 512x512 generation ~ 17 GB
 - 768x768 generation ~ 24 GB
+
+PS.
+Best image generation with 4 < guidance_scale < 8  and image_size = 768.
 
 ## Setups for Inference
 ### Prepare Environment
@@ -41,12 +36,12 @@ git clone https://github.com/TheDenk/Kandimate.git
 cd Kandimate
 ```
 
-With pip
+Requirements with pip
 ```bash
 pip install -r requiremetns.txt
 ```
 
-With conda
+Or with conda
 ```bash
 conda env create -f environment.yaml
 conda activate kandimate
@@ -61,12 +56,16 @@ git clone https://huggingface.co/kandinsky-community/kandinsky-2-2-decoder ./mod
 git clone https://huggingface.co/kandinsky-community/kandinsky-2-2-prior ./models/kandinsky-2-2-prior
 
 bash download_bashscripts/download-motion-module.sh
+bash download_bashscripts/download-interpolation-models.sh
 ```
-You may also directly download the motion module checkpoints from [Google Drive](https://drive.google.com/drive/folders/1GYMJ6ZJMljikSPkbJQNIbORqtdJjHBD0?usp=sharing), then put them in `models/motion-modules/` folder.
+You may also directly download the motion module and interpolation models checkpoints from [Google Drive](https://drive.google.com/drive/folders/1GYMJ6ZJMljikSPkbJQNIbORqtdJjHBD0?usp=sharing), then put them in `models/motion-modules/` folder and  `models/interpolation-models/` respectively.  
 
+Interpolation models also can be foud [here](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0).  
 
-### Inference    
+## Inference    
   
+#### Main inference
+
 All generation parameters, such as `prompt`, `negative_prompt`, `seed`, etc. stored in config file `configs/inference/inference.yaml`.   
 After downloading the all models, run the following commands to generate animations.  
 
@@ -77,6 +76,15 @@ python -m scripts.animate --config ./configs/inference/inference.yaml
 ```
   
 It is recommend users to generate animation with 16 frames and 768 resolution. Notably, various resolution/frames may affect the quality more or less.  
+  
+#### Interpolation (optional)
+
+Also you can apply interpolation between frames to make gif more smoothness.
+Set path to gif and inerpolation parameters in `./configs/interpolation/interpolation.yaml`.
+  
+```bash
+python -m scripts.interpolate --config ./configs/interpolation/interpolation.yaml
+```
   
 ## Steps for Training
 
@@ -109,14 +117,28 @@ python app.py
 By default, the demo will run at `localhost:7860`.
 Be sure that imageio with backend is installed. (pip install imageio[ffmpeg])
 
-<!-- <br><img src="__assets__/figs/gradio.jpg" style="width: 50em; margin-top: 1em"> -->
+## Todo
+- [x] Add train and inference scripts (py and jupyter).
+- [x] Add interpolation inference scripts (py and jupyter).
+- [-] Add Gradio Demo.
+- [-] Add controlnet (?probably). 
 
 ## Gallery
 Here several best results.
 
+<table width="800" class="center">
+    <tr>
+    <td><img src="docs/gifs/examples/anime_girl/752189959033839891.gif"></td>
+    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
+    <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
+    <td><img src="docs/gifs/examples/anime_nature/8831841692488764364.gif"></td>
+    </tr>
+</table>  
+
 ## Acknowledgements
-Tranks for the codebase [AnimateDiff](https://github.com/guoyww/AnimateDiff) and [Tune-a-Video](https://github.com/showlab/Tune-A-Video).  
-Tranks for the models [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2).
+Codebase [AnimateDiff](https://github.com/guoyww/AnimateDiff) and [Tune-a-Video](https://github.com/showlab/Tune-A-Video).  
+Diffusion models [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2).  
+Interpolation models [FILM](https://github.com/google-research/frame-interpolation) models.  
 
 ## Contacts
 <p>Issues should be raised directly in the repository. For professional support and recommendations please <a>welcomedenk@gmail.com</a>.</p>

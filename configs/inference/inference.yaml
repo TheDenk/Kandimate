@@ -2,22 +2,22 @@
 
 kandinsky_decoder: "../models/kandinsky-2-2-decoder"
 kandinsky_prior: "../models/kandinsky-2-2-prior"
-motion_module: "../models/motion-modules/checkpoint-5000.ckpt"
+motion_module: "../models/motion-modules/checkpoint-60000.ckpt"
 
 img_h: 768
 img_w: 768
 video_length: 16
 
 num_inference_steps: 25
-guidance_scale: 7.0
-random_seeds: [17, 42]
+guidance_scale: 5
+random_seeds: [8311767559332823379]
 
 prompts:
   - "pretty anime girl looking at the camera, cinematic, 4k, 8k"
-  - "pretty girl looking at the camera, cinematic, 4k, 8k"
+  - "pretty girl looking at the camera, cinematic, 8k, 4k"
 
 n_prompts:
-  - "low quality, bad quality"
+  - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "low quality, bad quality"
 
 
