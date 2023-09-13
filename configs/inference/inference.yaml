@@ -2,7 +2,7 @@
 
 kandinsky_decoder: "../models/kandinsky-2-2-decoder"
 kandinsky_prior: "../models/kandinsky-2-2-prior"
-motion_module: "../models/motion-modules/checkpoint-60000.ckpt"
+motion_module: "../models/motion-modules/checkpoint-65000.ckpt"
 
 img_h: 768
 img_w: 768
@@ -10,23 +10,19 @@ video_length: 16
 
 num_inference_steps: 25
 guidance_scale: 5
-random_seeds: [8311767559332823379, 181945330600420966, 7994468529718717002, 5088790080184097958]
+random_seeds: [8311767559332823379, 181945330600420966, 5966451691186754987, 5088790080184097958]
 
 prompts:
-  - "pretty anime girl looking at the camera, cinematic, 4k, 8k"
+  - "cute anime girl looking at the camera, cinematic, 4k, 8k"
   - "pretty girl looking at the camera, extremely high detail, 8k, 4k, cinematic"
-  - "rzd train is going, cinematic, 4k, 8k"
+  - "mountain river, cinematic, 8k, 4k, HQ"
   - "a cat, cinematic, 8k, 4k, HQ"
-
 
 n_prompts:
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
   - "lowres, text, error, cropped, worst quality, low quality, jpeg artifacts, ugly, duplicate, morbid, mutilated, out of frame, extra fingers"
-
-
-
 
 
 unet_additional_kwargs:

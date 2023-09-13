@@ -21,11 +21,11 @@ Examples:
 So, it maybe difficult to get a good result.
 
 GPU MEM requirements (RTX 3090 or 4090 at least):
-- 512x512 generation ~ 17 GB
+- 512x512 generation ~ 20.5 GB
 - 768x768 generation ~ 23.5 GB
 
-PS.
-Best image generation with 4 < guidance_scale < 8  and image_size = 768.
+PS.  
+Best image generation with 4 < guidance_scale < 8  and image_size = 768.  
 
 ## Setups for Inference
 ### Prepare Environment
@@ -77,6 +77,16 @@ python -m scripts.animate --config ./configs/inference/inference.yaml
 It is recommend users to generate animation with 16 frames and 768 resolution. Notably, various resolution/frames may affect the quality more or less.  
   
 #### Interpolation (optional)
+<table class="center">
+    <tr>
+    <td style="text-align: center">Original</td>
+    <td style="text-align: center">Interpolated</td>
+    </tr>
+    <tr>
+    <td><img width="160" src="docs/gifs/examples/dog/original.gif"></td>
+    <td><img width="160" src="docs/gifs/examples/dog/6244510644958237227.gif"></td>
+    </tr>
+</table>  
 
 Also you can apply interpolation between frames to make gif more smoothness.
 Set path to gif and inerpolation parameters in `./configs/interpolate/interpolate.yaml`.
@@ -84,7 +94,10 @@ Set path to gif and inerpolation parameters in `./configs/interpolate/interpolat
 ```bash
 python -m scripts.interpolate --config ./configs/interpolate/interpolate.yaml
 ```
-  
+
+PS.  
+It is not recommended to use interpolation when generating nature videos.  
+
 ## Steps for Training
 
 ### Dataset
@@ -119,8 +132,8 @@ Be sure that imageio with backend is installed. (pip install imageio[ffmpeg])
 ## Todo
 - [x] Add train and inference scripts (py and jupyter).
 - [x] Add interpolation inference scripts (py and jupyter).
-- [-] Add Gradio Demo.
-- [-] Add controlnet (?probably). 
+- [ ] Add Gradio Demo (probably).
+- [ ] Add controlnet (probably). 
 
 ## Gallery
 Here several best results.

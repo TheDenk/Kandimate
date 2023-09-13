@@ -157,3 +157,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 .gitignore
+
+models/interpolation-models/*
+models/motion-modules/*
+models/kandinsky-2-2-decoder/*
+models/kandinsky-2-2-prior/*

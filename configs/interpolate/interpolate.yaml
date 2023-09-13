@@ -1,8 +1,8 @@
 device: cuda
 precision: fp16  # fp16, fp32
-model_path: ../models/interpolation-models/film_net_fp16.pt
+model_path: ./models/interpolation-models/film_net_fp16.pt
 
-gif_path: ./samples/generation/5966451691186754987.gif
+gif_path: ./samples/generation/6244510644958237227.gif
 
 out_folder: ./samples/interpolated
 out_filename: interpolated.gif

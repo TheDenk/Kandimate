@@ -53,7 +53,7 @@ def main(args):
         unet=unet,
         scheduler=scheduler,
     )
-
+    
     motion_module_state_dict = torch.load(config['motion_module'], map_location='cpu')
     state_dict = {}
     for name, tensor in motion_module_state_dict['state_dict'].items():

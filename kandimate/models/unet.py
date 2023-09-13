@@ -839,7 +839,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
     def from_pretrained_2d(cls, pretrained_model_path, subfolder=None, unet_additional_kwargs=None):
         if subfolder is not None:
             pretrained_model_path = os.path.join(pretrained_model_path, subfolder)
-        print(f"loaded temporal unet's pretrained weights from {pretrained_model_path} ...")
+        print(f"Loading original unet's pretrained weights from {pretrained_model_path} ...")
 
         config_file = os.path.join(pretrained_model_path, 'config.json')
         if not os.path.isfile(config_file):
