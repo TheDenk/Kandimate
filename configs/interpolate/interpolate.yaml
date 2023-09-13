@@ -2,12 +2,12 @@ device: cuda
 precision: fp16  # fp16, fp32
 model_path: ../models/interpolation-models/film_net_fp16.pt
 
-gif_path: './samples/generation/8831841692488764364.gif'
+gif_path: ./samples/generation/5966451691186754987.gif
 
-out_folder: './samples/interpolated'
+out_folder: ./samples/interpolated
 out_filename: interpolated.gif
 
-out_h: 768
-out_w: 768
-out_durations: [60, 90, 120]
+out_h: 384
+out_w: 384
+durations: [60, 90, 120]
 interpolation_frames: 3

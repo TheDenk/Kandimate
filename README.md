@@ -9,19 +9,20 @@ Examples:
 <table width="800" class="center">
     <tr>
     <td><img src="docs/gifs/examples/real_girl/181945330600420966.gif"></td>
-    <td><img src="docs/gifs/examples/train/7994468529718717002.gif"></td>
-    <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td>
+    <td><img src="docs/gifs/examples/dog/6244510644958237227.gif"></td>
+    <td><img src="docs/gifs/examples/real_nature/5966451691186754987.gif"></td>
+    <!-- <td><img src="docs/gifs/examples/anime_girl/8311767559332823379.gif"></td> -->
     <td><img src="docs/gifs/examples/anime_nature/4600565812032460915.gif"></td>
     </tr>
 </table>  
 
 ## Common Issues
-`WARNING!` Current model version was trained on `3%` data from [WebVid](https://github.com/m-bain/webvid) dataset.  
+`WARNING!` Current model version was trained `1 epoch` on `3% ~ 350k video` data from [WebVid](https://github.com/m-bain/webvid) dataset.  
 So, it maybe difficult to get a good result.
 
 GPU MEM requirements (RTX 3090 or 4090 at least):
 - 512x512 generation ~ 17 GB
-- 768x768 generation ~ 24 GB
+- 768x768 generation ~ 23.5 GB
 
 PS.
 Best image generation with 4 < guidance_scale < 8  and image_size = 768.
@@ -78,10 +79,10 @@ It is recommend users to generate animation with 16 frames and 768 resolution. N
 #### Interpolation (optional)
 
 Also you can apply interpolation between frames to make gif more smoothness.
-Set path to gif and inerpolation parameters in `./configs/interpolation/interpolation.yaml`.
+Set path to gif and inerpolation parameters in `./configs/interpolate/interpolate.yaml`.
   
 ```bash
-python -m scripts.interpolate --config ./configs/interpolation/interpolation.yaml
+python -m scripts.interpolate --config ./configs/interpolate/interpolate.yaml
 ```
   
 ## Steps for Training
@@ -138,6 +139,14 @@ Here several best results.
     <td><img src="docs/gifs/examples/real_girl/1514380906832080732.gif"></td>
     <td><img src="docs/gifs/examples/real_girl/7055896805879472868.gif"></td>
     <td><img src="docs/gifs/examples/real_girl/8908903743535013658.gif"></td>
+    </tr>
+</table>  
+<table width="800" class="center">
+    <tr>
+    <td><img src="docs/gifs/examples/cat/5088790080184097958.gif"></td>
+    <td><img src="docs/gifs/examples/dog/6244510644958237227.gif"></td>
+    <td><img src="docs/gifs/examples/real_nature/6672553283261147091.gif"></td>
+    <td><img src="docs/gifs/examples/real_nature/5966451691186754987.gif"></td>
     </tr>
 </table>  
 
