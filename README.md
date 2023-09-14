@@ -59,7 +59,7 @@ bash download_bashscripts/download-interpolation-models.sh
 ```
 You may also directly download the motion module and interpolation models checkpoints from [Google Drive](https://drive.google.com/drive/folders/1GYMJ6ZJMljikSPkbJQNIbORqtdJjHBD0?usp=sharing), then put them in `models/motion-modules/` folder and  `models/interpolation-models/` respectively.  
 
-Interpolation models also can be foud [here](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0).  
+Interpolation models also can be found [here](https://github.com/dajes/frame-interpolation-pytorch/releases/tag/v1.0.0).  
 
 ## Inference    
   
@@ -166,7 +166,7 @@ Here several best results.
 ## Acknowledgements
 Codebase [AnimateDiff](https://github.com/guoyww/AnimateDiff) and [Tune-a-Video](https://github.com/showlab/Tune-A-Video).  
 Diffusion models [Kandinsky-2](https://github.com/ai-forever/Kandinsky-2).  
-Interpolation models [FILM](https://github.com/google-research/frame-interpolation) models.  
+Interpolation models [FILM](https://github.com/google-research/frame-interpolation).  
 
 ## Contacts
 <p>Issues should be raised directly in the repository. For professional support and recommendations please <a>welcomedenk@gmail.com</a>.</p>
