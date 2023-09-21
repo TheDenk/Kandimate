@@ -28,10 +28,11 @@ noise_scheduler_kwargs:
   clip_sample:         false
 
 train_data:
-  csv_path:        "/home/amp2/datasets/webvid/csv/results_2M_train.csv"
-  video_folder:    "/home/amp2/datasets/webvid/video"
-  sample_size:     256
-  sample_stride:   4
+  csv_path:        "../datasets/WebVid/csv/results_2M_train.csv"
+  video_folder:    "../datasets/WebVid/video"
+  embeds_path:     "../datasets/WebVid/embeds/embeds.pt"
+  sample_size:     320
+  sample_stride:   2
   sample_n_frames: 16
 
 validation_data:
@@ -46,10 +47,10 @@ validation_data:
 trainable_modules:
   - "motion_modules."
 
-unet_checkpoint_path: "/home/amp2/Kandimate/outputs/training-2023-09-10T15-42-42/checkpoints/checkpoint-1024.ckpt"
+unet_checkpoint_path: ""
 
 learning_rate:    5.e-5
-train_batch_size: 2
+train_batch_size: 1
 
 max_train_epoch:      -1
 max_train_steps:      5120
@@ -59,7 +60,7 @@ checkpointing_steps:  512
 validation_steps:       5000
 validation_steps_tuple: [2, 512, 1024]
 
-global_seed: 7
+global_seed: 17
 mixed_precision_training: true
 enable_xformers_memory_efficient_attention: False
 

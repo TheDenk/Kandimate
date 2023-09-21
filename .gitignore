@@ -162,3 +162,15 @@ models/interpolation-models/*
 models/motion-modules/*
 models/kandinsky-2-2-decoder/*
 models/kandinsky-2-2-prior/*
+lightning_logs/
+outputs/
+jupyters/train_debug.ipynb
+jupyters/create_text_embeddings.ipynb
+.gitignore
+train-lightning.py
+.gitignore
+train-low-memory.py
+resize_video.py
+download_video.py
+jupyters/download_webvid.ipynb
+create_embeds.py
