@@ -31,7 +31,7 @@ train_data:
   csv_path:        "/media/user/8FA7-900E/datasets/mxkit/csv/mxkit.csv"
   video_folder:    "/media/user/8FA7-900E/datasets/mxkit/video"
   embeds_path:     "/media/user/8FA7-900E/datasets/mxkit/embeds/embeds.pt"
-  sample_size:     128
+  sample_size:     320
   sample_stride:   2
   sample_n_frames: 16
 
