@@ -28,10 +28,10 @@ noise_scheduler_kwargs:
   clip_sample:         false
 
 train_data:
-  csv_path:        "../datasets/WebVid/csv/results_2M_train.csv"
-  video_folder:    "../datasets/WebVid/video"
-  embeds_path:     "../datasets/WebVid/embeds/embeds.pt"
-  sample_size:     320
+  csv_path:        "/media/user/8FA7-900E/datasets/mxkit/csv/mxkit.csv"
+  video_folder:    "/media/user/8FA7-900E/datasets/mxkit/video"
+  embeds_path:     "/media/user/8FA7-900E/datasets/mxkit/embeds/embeds.pt"
+  sample_size:     128
   sample_stride:   2
   sample_n_frames: 16
 
@@ -53,7 +53,7 @@ learning_rate:    5.e-5
 train_batch_size: 1
 
 max_train_epoch:      -1
-max_train_steps:      5120
+max_train_steps:      500000
 checkpointing_epochs: -1
 checkpointing_steps:  512
 

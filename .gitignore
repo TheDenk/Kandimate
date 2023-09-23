@@ -166,11 +166,10 @@ lightning_logs/
 outputs/
 jupyters/train_debug.ipynb
 jupyters/create_text_embeddings.ipynb
-.gitignore
 train-lightning.py
-.gitignore
-train-low-memory.py
 resize_video.py
 download_video.py
 jupyters/download_webvid.ipynb
 create_embeds.py
+bad_files.csv
+.~lock.bad_files.csv#
