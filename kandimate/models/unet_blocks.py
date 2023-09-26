@@ -4,6 +4,7 @@ from typing import Any, Dict, Optional, Tuple
 import torch
 from torch import nn
 import torch.nn.functional as F
+from torch import fft
 
 from diffusers.utils import is_torch_version
 from diffusers.models.attention_processor import AttnProcessor2_0
@@ -13,6 +14,28 @@ from .motion_module import get_motion_module
 from .processors import AttnAddedKVProcessor2_0, AttnAddedKVProcessor
 
 import pdb
+
+
+def apply_fourier_filter(x, threshold, scale):
+    device = x.device
+    dtype = x.dtype
+
+    x = x.to(dtype=torch.float32)
+    x_freq = fft.fftn(x, dim=(-2, -1))
+    x_freq = fft.fftshift(x_freq, dim=(-2, -1))
+    
+    B, C, F, H, W = x_freq.shape
+    mask = torch.ones((B, C, F, H, W), device=device, dtype=dtype) 
+
+    crow, ccol = H // 2, W //2
+    mask[..., crow - threshold:crow + threshold, ccol - threshold:ccol + threshold] = scale
+    x_freq = x_freq * mask
+
+    x_freq = fft.ifftshift(x_freq, dim=(-2, -1))
+    x_filtered = fft.ifftn(x_freq, dim=(-2, -1)).real
+    x_filtered = x_filtered.to(dtype=dtype)
+
+    return x_filtered
 
 
 def get_down_block(
@@ -472,7 +495,8 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
         add_upsample=True,
         only_cross_attention=False,
         cross_attention_norm=None,
-
+        
+        module_weights=None,
         use_motion_module=None,
         motion_module_kwargs=None,
     ):
@@ -558,6 +582,7 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
             self.upsamplers = None
 
         self.gradient_checkpointing = False
+        self.module_weights = {} if module_weights is None else module_weights
 
     def forward(
         self,
@@ -589,6 +614,16 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
             # pop res hidden states
             res_hidden_states = res_hidden_states_tuple[-1]
             res_hidden_states_tuple = res_hidden_states_tuple[:-1]
+
+            features_count = hidden_states.shape[1]
+
+            if features_count in self.module_weights:
+                backbone_coef = self.module_weights[features_count]['backbone_coef']
+                skip_coef = self.module_weights[features_count]['skip_coef']
+
+                res_hidden_states[:,: features_count// 2] = res_hidden_states[:,:features_count // 2] * backbone_coef
+                hidden_states = apply_fourier_filter(hidden_states, threshold=1, scale=skip_coef)
+
             hidden_states = torch.cat([hidden_states, res_hidden_states], dim=1)
 
             if self.training and self.gradient_checkpointing:
@@ -655,6 +690,7 @@ class ResnetUpsampleBlock3D(nn.Module):
         output_scale_factor=1.0,
         add_upsample=True,
 
+        module_weights=None,
         use_motion_module=None,
         motion_module_kwargs=None,
     ):
@@ -714,12 +750,23 @@ class ResnetUpsampleBlock3D(nn.Module):
             self.upsamplers = None
 
         self.gradient_checkpointing = False
+        self.module_weights = {} if module_weights is None else module_weights
 
     def forward(self, hidden_states, res_hidden_states_tuple, temb=None, upsample_size=None, scale: float = 1.0):
         for resnet, motion_module in zip(self.resnets, self.motion_modules):
             # pop res hidden states
             res_hidden_states = res_hidden_states_tuple[-1]
             res_hidden_states_tuple = res_hidden_states_tuple[:-1]
+
+            features_count = hidden_states.shape[1]
+
+            if features_count in self.module_weights:
+                backbone_coef = self.module_weights[features_count]['backbone_coef']
+                skip_coef = self.module_weights[features_count]['skip_coef']
+
+                res_hidden_states[:,: features_count// 2] = res_hidden_states[:,:features_count // 2] * backbone_coef
+                hidden_states = apply_fourier_filter(hidden_states, threshold=1, scale=skip_coef)
+
             hidden_states = torch.cat([hidden_states, res_hidden_states], dim=1)
 
             if self.training and self.gradient_checkpointing:
