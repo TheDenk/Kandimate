@@ -27,6 +27,7 @@ n_prompts:
 
 unet_additional_kwargs:
   use_motion_module: true
+  use_inflated_groupnorm: false
   motion_module_resolutions:
   - 1
   - 2

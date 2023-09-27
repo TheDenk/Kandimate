@@ -112,11 +112,12 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
         cross_attention_norm: Optional[str] = None,
         addition_embed_type_num_heads=64,
 
-        use_motion_module              = False,
-        motion_module_resolutions      = ( 1,2,4,8 ),
-        motion_module_mid_block        = False,
-        motion_module_decoder_only     = False,
-        motion_module_kwargs           = {},
+        use_motion_module = False,
+        use_inflated_groupnorm = False,
+        motion_module_resolutions = ( 1,2,4,8 ),
+        motion_module_mid_block = False,
+        motion_module_decoder_only = False,
+        motion_module_kwargs = {},
     ):
         super().__init__()
 
@@ -317,6 +318,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                 attention_head_dim=attention_head_dim[i] if attention_head_dim[i] is not None else output_channel,
 
                 use_motion_module=use_motion_module and (res in motion_module_resolutions) and (not motion_module_decoder_only),
+                use_inflated_groupnorm=use_inflated_groupnorm,
                 motion_module_kwargs=motion_module_kwargs,
             )
             self.down_blocks.append(down_block)
@@ -338,6 +340,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                 cross_attention_norm=cross_attention_norm,
 
                 use_motion_module=use_motion_module and motion_module_mid_block,
+                use_inflated_groupnorm=use_inflated_groupnorm,
                 motion_module_kwargs=motion_module_kwargs,
             )
         elif mid_block_type is None:
@@ -388,6 +391,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                 attention_head_dim=reversed_num_attention_heads[i] if reversed_num_attention_heads[i] is not None else output_channel,
 
                 use_motion_module=use_motion_module and (res in motion_module_resolutions),
+                use_inflated_groupnorm=use_inflated_groupnorm,
                 motion_module_kwargs=motion_module_kwargs,
             )
             self.up_blocks.append(up_block)

@@ -31,6 +31,7 @@ noise_scheduler_kwargs:
 train_data:
   csv_path:        "../datasets/WebVid/csv/results_2M_train.csv"
   video_folder:    "../datasets/WebVid/video"
+  embeds_path:     "../datasets/WebVid/embeds/embeds.pt"
   sample_size:     128
   sample_stride:   2
   sample_n_frames: 16

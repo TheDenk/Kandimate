@@ -57,7 +57,8 @@ def get_down_block(
     attention_head_dim=1,
     dropout=0.0,
 
-    use_motion_module=False,
+    use_motion_module=None,
+    use_inflated_groupnorm=None,
     motion_module_kwargs={},
 ):
 
@@ -77,6 +78,7 @@ def get_down_block(
             output_scale_factor=resnet_out_scale_factor,
 
             use_motion_module=use_motion_module,
+            use_inflated_groupnorm=use_inflated_groupnorm,
             motion_module_kwargs=motion_module_kwargs,
         )
     elif down_block_type == "SimpleCrossAttnDownBlock3D":
@@ -100,6 +102,7 @@ def get_down_block(
             cross_attention_norm=cross_attention_norm,
 
             use_motion_module=use_motion_module,
+            use_inflated_groupnorm=use_inflated_groupnorm,
             motion_module_kwargs=motion_module_kwargs,
         )
     raise ValueError(f"{down_block_type} does not exist.")
@@ -124,7 +127,8 @@ def get_up_block(
     attention_head_dim=1,
     dropout=0.0,
 
-    use_motion_module=False,
+    use_motion_module=None,
+    use_inflated_groupnorm=None,
     motion_module_kwargs={},
 ):
 
@@ -145,6 +149,7 @@ def get_up_block(
             output_scale_factor=resnet_out_scale_factor,
             
             use_motion_module=use_motion_module,
+            use_inflated_groupnorm=use_inflated_groupnorm,
             motion_module_kwargs=motion_module_kwargs,
         )
     elif up_block_type == "SimpleCrossAttnUpBlock3D":
@@ -169,6 +174,7 @@ def get_up_block(
             cross_attention_norm=cross_attention_norm,
 
             use_motion_module=use_motion_module,
+            use_inflated_groupnorm=use_inflated_groupnorm,
             motion_module_kwargs=motion_module_kwargs,
         )
     raise ValueError(f"{up_block_type} does not exist.")
@@ -190,6 +196,7 @@ class ResnetDownsampleBlock3D(nn.Module):
         add_downsample=True,
 
         use_motion_module=None,
+        use_inflated_groupnorm=None,
         motion_module_kwargs=None,
     ):
         super().__init__()
@@ -210,6 +217,7 @@ class ResnetDownsampleBlock3D(nn.Module):
                     non_linearity=resnet_act_fn,
                     output_scale_factor=output_scale_factor,
                     pre_norm=resnet_pre_norm,
+                    use_inflated_groupnorm=use_inflated_groupnorm,
                 )
             )
             processor = AttnProcessor2_0()
@@ -239,6 +247,7 @@ class ResnetDownsampleBlock3D(nn.Module):
                         output_scale_factor=output_scale_factor,
                         pre_norm=resnet_pre_norm,
                         down=True,
+                        use_inflated_groupnorm=use_inflated_groupnorm,
                     )
                 ]
             )
@@ -312,6 +321,7 @@ class SimpleCrossAttnDownBlock3D(nn.Module):
         cross_attention_norm=None,
         
         use_motion_module=None,
+        use_inflated_groupnorm=None,
         motion_module_kwargs=None,
     ):
         super().__init__()
@@ -339,6 +349,7 @@ class SimpleCrossAttnDownBlock3D(nn.Module):
                     non_linearity=resnet_act_fn,
                     output_scale_factor=output_scale_factor,
                     pre_norm=resnet_pre_norm,
+                    use_inflated_groupnorm=use_inflated_groupnorm,
                 )
             )
 
@@ -390,6 +401,7 @@ class SimpleCrossAttnDownBlock3D(nn.Module):
                         output_scale_factor=output_scale_factor,
                         pre_norm=resnet_pre_norm,
                         down=True,
+                        use_inflated_groupnorm=use_inflated_groupnorm,
                     )
                 ]
             )
@@ -498,6 +510,7 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
         
         module_weights=None,
         use_motion_module=None,
+        use_inflated_groupnorm=None,
         motion_module_kwargs=None,
     ):
         super().__init__()
@@ -526,6 +539,7 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
                     non_linearity=resnet_act_fn,
                     output_scale_factor=output_scale_factor,
                     pre_norm=resnet_pre_norm,
+                    use_inflated_groupnorm=use_inflated_groupnorm,
                 )
             )
             processor = (
@@ -575,6 +589,7 @@ class SimpleCrossAttnUpBlock3D(nn.Module):
                         output_scale_factor=output_scale_factor,
                         pre_norm=resnet_pre_norm,
                         up=True,
+                        use_inflated_groupnorm=use_inflated_groupnorm,
                     )
                 ]
             )
@@ -692,6 +707,7 @@ class ResnetUpsampleBlock3D(nn.Module):
 
         module_weights=None,
         use_motion_module=None,
+        use_inflated_groupnorm=None,
         motion_module_kwargs=None,
     ):
         super().__init__()
@@ -714,6 +730,7 @@ class ResnetUpsampleBlock3D(nn.Module):
                     non_linearity=resnet_act_fn,
                     output_scale_factor=output_scale_factor,
                     pre_norm=resnet_pre_norm,
+                    use_inflated_groupnorm=use_inflated_groupnorm,
                 )
             )
             processor = AttnProcessor2_0()
@@ -743,6 +760,7 @@ class ResnetUpsampleBlock3D(nn.Module):
                         output_scale_factor=output_scale_factor,
                         pre_norm=resnet_pre_norm,
                         up=True,
+                        use_inflated_groupnorm=use_inflated_groupnorm,
                     )
                 ]
             )
@@ -823,6 +841,7 @@ class UNetMidBlock3DSimpleCrossAttn(nn.Module):
         cross_attention_norm=None,
 
         use_motion_module=None,
+        use_inflated_groupnorm=None,
         motion_module_kwargs=None,
     ):
         super().__init__()
@@ -847,6 +866,7 @@ class UNetMidBlock3DSimpleCrossAttn(nn.Module):
                 non_linearity=resnet_act_fn,
                 output_scale_factor=output_scale_factor,
                 pre_norm=resnet_pre_norm,
+                use_inflated_groupnorm=use_inflated_groupnorm,
             )
         ]
         attentions = []
@@ -892,6 +912,7 @@ class UNetMidBlock3DSimpleCrossAttn(nn.Module):
                     non_linearity=resnet_act_fn,
                     output_scale_factor=output_scale_factor,
                     pre_norm=resnet_pre_norm,
+                    use_inflated_groupnorm=use_inflated_groupnorm,
                 )
             )
 

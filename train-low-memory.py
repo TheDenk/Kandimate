@@ -191,7 +191,7 @@ def main(
     vae.to(local_rank)
 
     # Get the training dataset
-    train_dataset = MxkitLowMem(**train_data, is_image=image_finetune)
+    train_dataset = WebVid10MLowMem(**train_data, is_image=image_finetune)
     distributed_sampler = DistributedSampler(
         train_dataset,
         num_replicas=num_processes,
